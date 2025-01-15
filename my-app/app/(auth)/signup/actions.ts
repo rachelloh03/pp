@@ -13,7 +13,7 @@ const schemaRegister = z.object({
   }),
 });
 
-export async function registerUserAction(prevState: any, formData: FormData) {
+export async function signup(prevState: any, formData: FormData) {
   const validatedFields = schemaRegister.safeParse({
     username: formData.get("username"),
     password: formData.get("password"),

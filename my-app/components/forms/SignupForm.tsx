@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { registerUserAction } from "@/data/actions/auth-actions";
+// import { registerUserAction } from "@/data/actions/auth-actions";
+import { signup } from "@/app/(auth)/signup/actions";
 
 import {
   CardTitle,
@@ -24,10 +25,7 @@ const INITIAL_STATE = {
 };
 
 export function SignupForm() {
-  const [formState, formAction] = useActionState(
-    registerUserAction,
-    INITIAL_STATE
-  );
+  const [formState, formAction] = useActionState(signup, INITIAL_STATE);
   console.log(formState, "client");
   return (
     <div className="w-full max-w-md">
