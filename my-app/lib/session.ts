@@ -36,6 +36,7 @@ export async function encrypt(payload: SessionPayload) {
 
 export async function decrypt(session: string | undefined = "") {
   try {
+    // this is the bug. jwtVerify not verifying properly
     const { payload } = await jwtVerify(session, encodedKey, {
       algorithms: ["HS256"],
     });

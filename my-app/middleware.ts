@@ -6,13 +6,13 @@ const protectedRoutes = ["/app/dashboard"];
 const publicRoutes = ["/app/(auth)/signin"];
 
 export default async function middleware(req: NextRequest) {
-  console.log("HELLOO");
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
 
   const cookie = (await cookies()).get("session")?.value;
   const session = await decrypt(cookie);
+  console.log("session", session);
 
   if (isProtectedRoute && !session?.username) {
     return NextResponse.redirect(new URL("/app/(auth)/signin", req.nextUrl));
