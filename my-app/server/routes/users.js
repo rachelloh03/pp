@@ -4,10 +4,31 @@ const router = express.Router();
 // Mock database
 const users = [];
 
-// Getting the list of users from the mock database
-router.get("/", (req, res) => {
-  res.send(users);
+import pg from "pg";
+
+const client = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "user_db",
+  password: "Fangpi_123",
+  port: 5432,
 });
+client.connect();
+
+// Getting the list of users from the mock database
+// router.get("/", (req, res) => {
+//   res.send(users);
+// });
+
+// router.get("/", (req, res) => {
+//   client.query("Select * from users", (err, result) => {
+//     if (!err) {
+//       res.send(result.rows);
+//       console.log("hello");
+//     }
+//   });
+//   client.end();
+// });
 
 router.post("/", (req, res) => {
   const user = req.body;
@@ -38,5 +59,16 @@ router.patch("/:username2", (req, res) => {
 
   res.send(`User with the ${username} has been updated`);
 });
+
+// Getting the list of users from the mock database
+// router.get("/", (req, res) => {
+//   client.query("Select * from users", (err, result) => {
+//     if (!err) {
+//       res.send(result.rows);
+//       console.log("hello");
+//     }
+//   });
+//   client.end();
+// });
 
 export default router;
