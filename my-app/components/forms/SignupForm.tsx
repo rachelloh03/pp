@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
 // import { registerUserAction } from "@/data/actions/auth-actions";
 import { signup } from "@/app/(auth)/signup/actions";
+import { useActionState } from "react";
 
 import {
   CardTitle,
@@ -26,7 +26,8 @@ const INITIAL_STATE = {
 
 export function SignupForm() {
   const [formState, formAction] = useActionState(signup, INITIAL_STATE);
-  console.log(formState, "client");
+  console.log(formState);
+
   return (
     <div className="w-full max-w-md">
       <form action={formAction}>
@@ -71,9 +72,11 @@ export function SignupForm() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">
-            <button type="submit" className="w-full">
-              Sign Up
-            </button>
+            <Link className="underline ml-2" href="success">
+              <button type="submit" className="w-full">
+                Sign Up
+              </button>
+            </Link>
           </CardFooter>
         </Card>
         <div className="mt-4 text-center text-sm">
